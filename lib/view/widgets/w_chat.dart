@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/data/model/chat.dart';
 import 'package:flutter_app/view/styles/s_decorations.dart';
 
 class WChat extends StatelessWidget{
-
-  WChat();
+  Chat chat;
+  WChat({this.chat});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +19,15 @@ class WChat extends StatelessWidget{
               height:50,
               width: 50,
               margin: EdgeInsets.all(10.0),
-              decoration:DecorationConstants.decorationImgHero('https://avatars.githubusercontent.com/u/16611877?v=4?s=400'),
+              decoration:DecorationConstants.decorationImgHero(chat.foto),
             ),
             Container(
                 width: MediaQuery.of(context).size.width/1.45,
               child:Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:<Widget> [
-                  Text('Matheus',style: TextStyle(fontWeight: FontWeight.bold),),
-                  Text('Oi, como vai?',style: TextStyle(fontWeight: FontWeight.normal),),
+                  Text(chat.contato,style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text(chat.msg,style: TextStyle(fontWeight: FontWeight.normal),),
 
                 ],
               )
@@ -34,14 +35,14 @@ class WChat extends StatelessWidget{
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children:<Widget> [
-                Text('19:45',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 10),),
+                Text(chat.data,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 10),),
                 Container(height: 2,),
                 Container(
                     width: 20,
                     height: 20,
                    decoration: DecorationConstants.decorationCircularGreen,
                     child:Center(
-                      child:Text('1',style: TextStyle(color: Colors.white),)
+                      child:Text(chat.qtd.toString(),style: TextStyle(color: Colors.white),)
                     ))
 
               ],

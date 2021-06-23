@@ -1,16 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/data/model/chat.dart';
 import 'package:flutter_app/view/pages/homepage/s_home_page.dart';
 import 'package:flutter_app/view/widgets/w_chat.dart';
 
 class WChatsList extends StatelessWidget{
+  List<Chat> list;
 
-  WChatsList();
+
+  WChatsList({this.list});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: ListView.builder(
-        itemCount: 10,
+        itemCount: list.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: (){
@@ -20,7 +23,7 @@ class WChatsList extends StatelessWidget{
                   pageBuilder: (_, __, ___) => SHomePage()),
               );
             },
-            child:WChat()
+            child:WChat(chat: list[index],)
           )  ;
         },
       ),

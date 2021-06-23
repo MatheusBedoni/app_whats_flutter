@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/pages/homepage/c_home_page.dart';
 import 'package:flutter_app/view/styles/s_colors.dart';
 import 'package:flutter_app/view/styles/s_text.dart';
 import 'package:flutter_app/view/widgets/w_chamadas_list.dart';
@@ -18,12 +19,19 @@ class SHomePage extends StatefulWidget {
 class _SHomePageState extends State<SHomePage> with SingleTickerProviderStateMixin{
 
   TabController tabController;
+  CHome_Page home_controller;
 
   int cont = 0;
 
 
   @override
   void initState() {
+
+
+    home_controller = new CHome_Page(list:[]);
+    home_controller.getListChat();
+
+
     tabController = new TabController(length: 4, vsync: this);
     super.initState();
   }
@@ -72,7 +80,7 @@ class _SHomePageState extends State<SHomePage> with SingleTickerProviderStateMix
         controller:tabController ,
         children:<Widget> [
           Icon(Icons.camera_alt),
-          WChatsList(),
+          WChatsList(list: home_controller.list,),
           WStatusList(),
           WChamadasList()
         ],
